@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 class Car extends React.Component {
     render () {
-        return <h1>Hello this is car</h1>;
+        return <h1>Hello this is car {this.props.brand}!</h1>;
     }
 }
 

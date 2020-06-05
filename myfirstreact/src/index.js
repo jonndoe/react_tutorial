@@ -5,7 +5,7 @@ import Car from './App.js';
 const myfirstelement = (
     <div>
       <h1>Hello React!</h1>
-      <Car />
+      <Car brand="Ford" />
     </div>
                        )
 

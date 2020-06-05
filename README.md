@@ -455,3 +455,27 @@ import Car from './App.js';
 
 ReactDOM.render(<Car />, document.getElementById('root'));
 ```
+
+## React Props
+
+React Props are like function arguments in JavaScript and attributes in HTML.
+
+To send props into a component, use the same syntax as HTML attributes:
+
+Add a "brand" attribute to the Car element:
+
+`const myelement = <Car brand="Ford" />;`
+
+The component receives the argument as a props object:
+
+Use the brand attribute in the component:
+
+```
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
+
+```
