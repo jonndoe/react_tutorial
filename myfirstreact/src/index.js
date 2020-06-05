@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Car from './App.js';
+import Car  from "./Car";
+import Garage from "./Garage";
+import CarDetail from "./CarDetail";
+
 
 const myfirstelement = (
     <div>
       <h1>Hello React!</h1>
-      <Car brand="Ford" />
+      <Garage />
+
+      <CarDetail moreinfo='This is from props!!!'/>
     </div>
                        )
 

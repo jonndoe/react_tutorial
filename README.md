@@ -479,3 +479,231 @@ class Car extends React.Component {
 }
 
 ```
+
+#### Pass Data:
+
+Props are also how you pass data from one component to another, as parameters.
+
+Send the "brand" property from the Garage component to the Car component:
+
+```
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    return (
+      <div>
+      <h1>Who lives in my garage?</h1>
+      <Car brand="Ford" />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Garage />, document.getElementById('root'));
+```
+
+If you have a variable to send, and not a string as in the example above:
+```
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    const carname = "Ford";
+    return (
+      <div>
+      <h1>Who lives in my garage?</h1>
+      <Car brand={carname} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Garage />, document.getElementById('root'));
+```
+Or send it as an object:
+
+Create an object named "carinfo" and send it to the Car component:
+
+```
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand.model}!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    const carinfo = {name: "Ford", model: "Mustang"};
+    return (
+      <div>
+      <h1>Who lives in my garage?</h1>
+      <Car brand={carinfo} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Garage />, document.getElementById('root'));
+
+```
+
+#### Props in the Constructor:
+
+If your component has a constructor function, the props should always be passed to the constructor and also to the React.Component via the super() method...
+
+React Props are read-only! You will get an error if you try to change their value.
+
+```
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <h2>I am a Car!</h2>;
+  }
+}
+
+ReactDOM.render(<Car model="Mustang"/>, document.getElementById('root'));
+```
+
+
+## React State
+
+React components has a built-in state object.
+
+The state object is where you store property values that belongs to the component.
+
+When the state object changes, the component re-renders.
+
+Specify the state object in the constructor method:
+
+```
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {brand: "Ford"};
+  }
+  render() {
+    return (
+      <div>
+        <h1>My Car</h1>
+      </div>
+    );
+  }
+}
+```
+
+The state object can contain as many properties as you like:
+
+```
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1>My Car</h1>
+      </div>
+    );
+  }
+}
+
+```
+
+#### Using the `state` Object
+
+Refer to the `state` object anywhere in the component by using the `this.state.propertyname` syntax:
+
+```
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+      </div>
+    );
+  }
+}
+```
+
+
+#### Changing the state Object
+
+To change a value in the state object, use the this.setState() method.
+
+When a value in the state object changes, the component will re-render, meaning that the output will change according to the new value(s).
+
+Always use the setState() method to change the state object, it will ensure that the component knows its been updated and calls the render() method (and all the other lifecycle methods).
+
+Add a button with an onClick event that will change the color property:
+
+```
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+  changeColor = () => {
+    this.setState({color: "blue"});
+  }
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+        <button
+          type="button"
+          onClick={this.changeColor}
+        >Change color</button>
+      </div>
+    );
+  }
+}
+```
