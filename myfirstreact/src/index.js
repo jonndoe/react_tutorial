@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Car from './App.js';
 
-const myfirstelement = (<h1>Hello React!</h1>)
+const myfirstelement = (
+    <div>
+      <h1>Hello React!</h1>
+      <Car />
+    </div>
+                       )
 
 ReactDOM.render(
   myfirstelement,
