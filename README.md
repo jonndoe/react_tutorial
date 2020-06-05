@@ -707,3 +707,100 @@ class Car extends React.Component {
   }
 }
 ```
+
+## React LifeCycle
+
+ Monitor and manipulate Component lifecycle by:
+ 
+- Mounting
+- Updating
+- Unmounting
+
+#### Mounting
+
+Mounting means putting elements into the DOM.
+
+React has four built-in methods that gets called, in this order, when mounting a component:
+
+    constructor()
+    getDerivedStateFromProps()
+    render()
+    componentDidMount()
+    
+    
+The render() method is required and will always be called, the others are optional and will be called if you define them.
+
+The constructor method is called, by React, every time you make a component:
+
+```
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+
+```
+
+`getDerivedStateFromProps`
+
+The getDerivedStateFromProps method is called right before the render method:
+
+```
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+}
+
+ReactDOM.render(<Header favcol="yellow"/>, document.getElementById('root'));
+```
+
+
+componentDidMount
+
+The componentDidMount() method is called after the component is rendered.
+
+```
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 1000)
+  }
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+
+```
+
+
+
